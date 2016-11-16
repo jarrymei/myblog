@@ -30,8 +30,31 @@ app.use(session({
 // flash 中间价，用来显示通知
 app.use(flash());
 
+//挂载常量 app.locals
+app.locals.blog = {
+    title: pkg.name,
+    description: pkg.description
+}
+
+//挂载变量 res.locals
+app.use(function (req, res, next) {
+    res.locals.user = req.session.user;
+    res.locals.success = req.flash('success').toString();
+    res.locals.error = req.flash('error').toString();
+    next();
+})
+
+// 处理表单及文件上传的中间件
+app.use(require('express-formidable')({
+    uploadDir: path.join(__dirname, 'public/img'),// 上传文件目录
+    keepExtensions: true// 保留后缀
+}));
+
+
 // 路由
 routes(app);
+
+
 
 // 监听端口，启动程序
 app.listen(config.port, function () {
