@@ -1,0 +1,30 @@
+<%- include('header')%>
+
+<div class="ui grid">
+    <div class="four wide column"></div>
+        <div class="eight wide column">
+            <label>用户信息修改</label>
+            <form class="ui form segment" method="post" enctype="multipart/form-data">
+                <div class="field required">
+                    <label>用户名</label>
+                    <input type="text" name="name" value="<%= user.name%>">
+                </div>
+                <div class="field required">
+                    <label>性别</label>
+                    <select name="gender">
+                        <option></option>
+                        <option value="m" <% if(user.gender === "m"){ %> selected <%}%>>男</option>
+                        <option value="f" <% if(user.gender === "f"){ %> selected <%}%>>女</option>
+                        <option value="x" <% if(user.gender === "x"){ %> selected <%}%>>保密</option>
+                    </select>
+                </div>
+                <div class="field required">
+                    <label>个人简介</label>
+                    <textarea name="bio" rows="5"  v-model="user.bio"><%= user.bio%></textarea>
+                </div>
+                <input type="submit" class="ui button fluid" value="保存  ">
+            </form>
+        </div>
+</div>
+
+<%- include('footer') %>
