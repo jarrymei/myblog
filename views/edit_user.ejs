@@ -19,6 +19,16 @@
                     </select>
                 </div>
                 <div class="field required">
+                    <label>图像</label>
+                    <div>
+                        <input type="file" name="avatar" >
+                    </div>
+                    <div>
+                        <img src="/img/<%= user.avatar%>" name="img" height="70" width="100">
+                    </div>
+                </div>
+
+                <div class="field required">
                     <label>个人简介</label>
                     <textarea name="bio" rows="5"  v-model="user.bio"><%= user.bio%></textarea>
                 </div>
@@ -26,5 +36,22 @@
             </form>
         </div>
 </div>
+<script>
+    var _avatar = $("input[name='avatar']");
+    var _img = $("img[name='img']");
+    _avatar.on('change', function () {
+        var avatar = _avatar.val();
+        /*_img.attr("src", avatar);*/
+        var objType = avatar.substring(avatar.lastIndexOf('.')).toLowerCase();
+        if (!(objType == '.jpg' || objType == '.png')) {
+            alert('请上传jpg、png类型图片');
+            return false;
+        } else {
+            /*$.ajax({
+
+            })*/
+        }
+    })
+</script>
 
 <%- include('footer') %>

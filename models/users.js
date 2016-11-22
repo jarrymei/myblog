@@ -23,9 +23,9 @@ module.exports = {
     },
 
     //更新用户信息
-    updateUser: function updateUser(user) {
+    updateUser: function updateUser(id, user) {
         return User
-            .update({_id: user._id},{$set: {"name": user.name, "gender": user.gender, "bio": user.bio}})
+            .update({_id: id},{$set: user})
             .addCreatedAt()
             .exec();
     }
